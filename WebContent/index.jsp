@@ -1,10 +1,19 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="lottery.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 Dao dao = new Dao();
-ArrayList<Integer> num = Dao.makeNum(); 
+Set<Integer> setNum = Dao.makeNum();
+Iterator<Integer> iteNum = setNum.iterator();
+
+ArrayList<Integer> num = new ArrayList<>();
+
+while(iteNum.hasNext()) {
+	num.add(iteNum.next());
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -15,11 +24,9 @@ ArrayList<Integer> num = Dao.makeNum();
 </head>
 <body>
 	<div class="win_result">
-					<h4><strong>937회</strong> 당첨결과</h4>
-					<p class="desc">(2020년 11월 14일 추첨)</p>
 					<div class="nums">
 						<div class="num win">
-							<strong>당첨번호</strong>
+							<strong>로또 행운의 번호</strong>
 							<p>
 								<span class="ball_645 lrg ball1"><%=num.get(0) %></span>
 								<span class="ball_645 lrg ball1"><%=num.get(1) %></span>
@@ -29,10 +36,12 @@ ArrayList<Integer> num = Dao.makeNum();
 								<span class="ball_645 lrg ball4"><%=num.get(5) %></span>
 							</p>
 						</div>
-						<div class="num bonus">
-							<strong>보너스</strong>
-							<p><span class="ball_645 lrg ball3"><%=num.get(6)%></span></p>
-						</div>
+<!-- 						<div class="num bonus"> -->
+<!-- 							<strong>보너스</strong> -->
+<%-- 							<p><span class="ball_645 lrg ball3"><%=num.get(6)%></span></p> --%>
+<!-- 						</div> -->
+
+					<h4><a href="https://dhlottery.co.kr/gameResult.do?method=byWin">당첨결과확인</a></h4>
 					</div>
 				</div>
 </body>
