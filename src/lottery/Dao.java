@@ -11,19 +11,17 @@ import java.util.TreeSet;
 public class Dao {
 	public static Set<Integer> makeNum() {
 		int max = 44;
-		int numbersNeeded = 10;
+		int numbersNeeded = 6;
 		
 		if (max < numbersNeeded)
 		{
 		    throw new IllegalArgumentException("Can't ask for more numbers than are available");
 		}
 		
-		Random rng = new Random(); // Ideally just create one instance globally
-		// Note: use LinkedHashSet to maintain insertion order
+		Random rng = new Random();
 		Set<Integer> generated = new TreeSet<Integer>();
-		for(int i=1; i<numbersNeeded; i++) {
+		for(int i=0; i<numbersNeeded; i++) {
 		    Integer next = rng.nextInt(max) + 1;
-		    // As we're adding to a set, this will automatically do a containment check
 		    generated.add(next);
 		}
 		return generated; 
